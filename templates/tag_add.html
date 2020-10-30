@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container container-fluid">
+        <form class="col-6" action="/tags/new" method="POST">
+            <h1>Create a tag</h1>
+            <div class="form-group">
+              <label for="tagName">Tag Name:</label>
+              <input type="text" class="form-control" name="tagName" id="tagName" placeholder="Tag">
+            </div>
+
+            {% if posts %}
+            <h2>Add tags to:</h2>
+                {% for post in posts %}
+                <div class="form-check ml-3 mb-1">
+                    <input class="form-check-input" name="posts" type="checkbox" id="{{post.id}}" value="{{post.id}}">
+                    <label class="form-check-label" for="{{posts.id}}"><u>{{post.title}}</u> by {{post.user.first_name}} {{post.user.last_name}}</label>
+                </div>
+                {% endfor %}
+            {% endif %}
+            <button class="btn btn-primary btn-sm">Create</button>
+        </form>
+    </div>
+{% endblock %}
